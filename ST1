@@ -1,0 +1,67 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local MaxOpen = "OPWanoEgg"
+local Window = Rayfield:CreateWindow({
+    Name = "$anity Hub ",
+    LoadingTitle = "Loading $anity hub please wait..",
+    LoadingSubtitle = "Developed by zero",
+    ConfigurationSaving = {
+       Enabled = true,
+       FolderName = nil, 
+       FileName = "$anity Hub"
+    },
+    Discord = {
+       Enabled = true,
+       Invite = "ABCp3BrAy5", 
+       RememberJoins = false 
+    },
+    KeySystem = true, 
+    KeySettings = {
+       Title = "Key System | $anity Hub ",
+       Subtitle = "Key System",
+       Note = "Join discord.gg/ABCp3BrAy5 for key",
+       FileName = "Key", 
+       SaveKey = false, 
+       GrabKeyFromSite = false, 
+       Key = {"wtfdude"} 
+    }
+ })
+
+ Rayfield:Notify({
+    Title = "$anity Hub",
+    Content = "discord.gg/ABCp3BrAy5",
+    Duration = 6.5,
+    Image = 4483362458,
+    Actions = { -- Notification Buttons
+       Ignore = {
+          Name = "Okay!",
+          Callback = function()
+          print("The user tapped Okay!")
+       end
+    },
+ },
+ })
+
+ local Tab = Window:CreateTab("Main", 4483362458)
+ local Section = Tab:CreateSection("Main")
+
+local Toggle = Tab:CreateToggle({
+    Name = "Auto Max",
+    CurrentValue = false,
+    Flag = "Toggle1", 
+    Callback = function(Value)
+      if Value == true then 
+         MaxOpen = "OPWanoEgg"
+      elseif Value == false then 
+         MaxOpen = nil 
+      end
+      while task.wait(1) do 
+          local args = {
+              [1] = MaxOpen
+         }
+            
+         game:GetService("ReplicatedStorage").Remote.AttemptMultiOpen:FireServer(unpack(args))
+      end
+    end,
+ })
+
+Rayfield:LoadConfiguration()
